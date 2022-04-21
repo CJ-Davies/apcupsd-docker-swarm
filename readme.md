@@ -342,7 +342,7 @@ cj@worker:~/apcupsd-docker-swarm$ docker compose up -d
 
 ## Check the Web interface
 
-Open a Web browser & navigate to [10.42.0.1:8080/apc/multimon.cgi](10.42.0.1:8080/apc/multimon.cgi) substituting the IP of your manager node & the port you chose if it was something other than 8080.
+Open a Web browser & navigate to [http://10.42.0.1:8080/apc/multimon.cgi](http://10.42.0.1:8080/apc/multimon.cgi) substituting the IP of your manager node & the port you chose if it was something other than 8080.
 
 
 You should see something like the below, that shows all UPS devices across all swarm nodes.
