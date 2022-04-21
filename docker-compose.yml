@@ -1,0 +1,50 @@
+version: "3.9"
+
+networks:
+  ups-overlay:
+    driver: overlay
+    attachable: true
+
+services:
+  is1137004623:
+    build:
+      context: ./apcupsd-daemon
+    ports:
+      - "3551:3551"
+    devices:
+      - "/dev/usb/IS1137004623_Smart-UPS_3000:/dev/ups"
+    environment:
+      - UPSNAME=IS1137004623_Smart-UPS_3000
+    networks:
+      - ups-overlay
+  js0701002219:
+    build:
+      context: ./apcupsd-daemon
+    ports:
+      - "3552:3551"
+    devices:
+      - "/dev/usb/JS0701002219_Smart-UPS_2200:/dev/ups"
+    environment:
+      - UPSNAME=JS0701002219_Smart-UPS_2200
+    networks:
+      - ups-overlay
+  js0818004085:
+    build:
+      context: ./apcupsd-daemon
+    ports:
+      - "3553:3551"
+    devices:
+      - "/dev/usb/JS0818004085_Smart-UPS_2200:/dev/ups"
+    environment:
+      - UPSNAME=JS0818004085_Smart-UPS_2200
+    networks:
+      - ups-overlay
+  webif:
+    build:
+      context: ./apcupsd-webif
+    ports: 
+      - 8080:80
+    environment:
+      - UPS_TO_MONITOR=is1137004623,js0701002219,js0818004085,js0806003449,js0832005139
+    networks:
+      - ups-overlay
